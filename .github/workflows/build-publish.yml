@@ -11,22 +11,27 @@ jobs:
      runs-on: ubuntu-latest
      env:
       OIDC_AUDIENCE: 'jfrog-github'
-      OIDC_PROVIDER: 'github'
-      PLATFORM_REPO: 'eks-npm'
+      OIDC_PROVIDER: 'github-artifactory'
+      PLATFORM_REPO: 'proj1-npm-virtual'
+      JFROG_CLI_BUILD_PROJECT: 'proj1'
+      JFROG_CLI_LOG_LEVEL: 'DEBUG'
      defaults:
       run:
         working-directory: ./package
      steps:
        - name: Checkout
-         uses: actions/checkout@v3
+         uses: actions/checkout@v4
               
        - name: Setup Node npm
-         uses: actions/setup-node@v3
+         uses: actions/setup-node@v4
    
        - name: Setup JFrog CLI
-         uses: jfrog/setup-jfrog-cli@v3
-         env:  
-           JF_URL: ${{ secrets.JF_URL }}
+         uses: jfrog/setup-jfrog-cli@v4
+         env:
+           JF_USER: ${{ secrets.JF_USER }}
+           JF_PASSWORD: ${{ secrets.JF_ACCESS_TOKEN }}
+           JF_URL: ${{ vars.JF_URL }}
+           JF_PROJECT: ${{ vars.JF_PROJECT }}
          with:
            oidc-provider-name: ${{ env.OIDC_PROVIDER }}
            oidc-audience: ${{ env.OIDC_AUDIENCE }}
@@ -51,3 +56,6 @@ jobs:
           jf rt build-add-git
           # Publish build info
           jf rt build-publish
+       - name: Scan Build
+         run: |          
+          jf bs
