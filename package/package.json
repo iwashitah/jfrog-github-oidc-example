@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/yonarbel/create-package-example#readme",
   "dependencies": {
-    "lodash": "4.17.4"
+    "lodash": "^4.17.12"
   },
   "devDependencies": {
     "jest": "^29.3.1"
