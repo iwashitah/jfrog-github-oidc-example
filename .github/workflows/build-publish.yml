@@ -13,6 +13,8 @@ jobs:
       OIDC_AUDIENCE: 'jfrog-github'
       OIDC_PROVIDER: 'github-artifactory'
       PLATFORM_REPO: 'proj1-npm-virtual'
+      JFROG_CLI_BUILD_NAME: TEST1
+      JFROG_CLI_BUILD_NUMBER: 1
       JFROG_CLI_BUILD_PROJECT: 'proj1'
       JFROG_CLI_LOG_LEVEL: 'DEBUG'
      defaults:
