@@ -16,7 +16,7 @@ jobs:
       JFROG_CLI_BUILD_NAME: TEST1
       JFROG_CLI_BUILD_NUMBER: 1
       JFROG_CLI_BUILD_PROJECT: 'proj1'
-      JFROG_CLI_LOG_LEVEL: 'DEBUG'
+#      JFROG_CLI_LOG_LEVEL: 'DEBUG'
      defaults:
       run:
         working-directory: ./package
