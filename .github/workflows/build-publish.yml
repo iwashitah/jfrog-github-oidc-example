@@ -37,6 +37,7 @@ jobs:
          with:
            oidc-provider-name: ${{ env.OIDC_PROVIDER }}
            oidc-audience: ${{ env.OIDC_AUDIENCE }}
+           version: 2.125.0
 
 #       - name: Set CLI Config
 #         run: jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
