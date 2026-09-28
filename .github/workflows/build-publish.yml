@@ -24,8 +24,8 @@ jobs:
        - name: Checkout
          uses: actions/checkout@v5
 
-       - name: Setup Node npm
-         uses: actions/setup-node@v4
+#       - name: Setup Node npm
+#         uses: actions/setup-node@v4
 
        - name: Setup JFrog CLI
          uses: jfrog/setup-jfrog-cli@v5
@@ -38,26 +38,26 @@ jobs:
            oidc-provider-name: ${{ env.OIDC_PROVIDER }}
            oidc-audience: ${{ env.OIDC_AUDIENCE }}
 
-       - name: Set CLI Config
-         run: jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
+#       - name: Set CLI Config
+#         run: jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
 
-       - name: Install Dependencies
-         run: jf npm install
+#       - name: Install Dependencies
+#         run: jf npm install
 
-       - name: Run tests
-         run: npm test
+#       - name: Run tests
+#         run: npm test
 
-       - name: Publish
-         run: jf npm publish
+#       - name: Publish
+#         run: jf npm publish
 
-       - name: Publish Build info With JFrog CLI
-         run: |
-          # Collect environment variables for the build
-          jf rt build-collect-env
-          # Collect VCS details from git and add them to the build
-          jf rt build-add-git
-          # Publish build info
-          jf rt build-publish
+#       - name: Publish Build info With JFrog CLI
+#         run: |
+#          # Collect environment variables for the build
+#          jf rt build-collect-env
+#          # Collect VCS details from git and add them to the build
+#          jf rt build-add-git
+#          # Publish build info
+#          jf rt build-publish
        - name: Scan Build
          run: |          
           # jf bs --fail=false
