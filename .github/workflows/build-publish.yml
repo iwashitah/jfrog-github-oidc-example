@@ -23,10 +23,10 @@ jobs:
      steps:
        - name: Checkout
          uses: actions/checkout@v5
-              
+
        - name: Setup Node npm
          uses: actions/setup-node@v4
-   
+
        - name: Setup JFrog CLI
          uses: jfrog/setup-jfrog-cli@v5
          env:
@@ -37,20 +37,19 @@ jobs:
          with:
            oidc-provider-name: ${{ env.OIDC_PROVIDER }}
            oidc-audience: ${{ env.OIDC_AUDIENCE }}
-          version: 2.125.0
 
        - name: Set CLI Config
          run: jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
-           
+
        - name: Install Dependencies
          run: jf npm install
-           
+
        - name: Run tests
          run: npm test
-         
+
        - name: Publish
          run: jf npm publish
-         
+
        - name: Publish Build info With JFrog CLI
          run: |
           # Collect environment variables for the build
