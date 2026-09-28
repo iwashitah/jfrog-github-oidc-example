@@ -25,7 +25,7 @@ jobs:
          uses: actions/checkout@v5
               
        - name: Setup Node npm
-         uses: actions/setup-node@v5
+         uses: actions/setup-node@v4
    
        - name: Setup JFrog CLI
          uses: jfrog/setup-jfrog-cli@v5
