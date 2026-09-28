@@ -29,8 +29,6 @@ jobs:
    
        - name: Setup JFrog CLI
          uses: jfrog/setup-jfrog-cli@v5
-         with:
-          version: 2.125.0
          env:
            # JF_USER: ${{ secrets.JF_USER }}
            # JF_PASSWORD: ${{ secrets.JF_ACCESS_TOKEN }}
@@ -39,6 +37,7 @@ jobs:
          with:
            oidc-provider-name: ${{ env.OIDC_PROVIDER }}
            oidc-audience: ${{ env.OIDC_AUDIENCE }}
+          version: 2.125.0
 
        - name: Set CLI Config
          run: jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
