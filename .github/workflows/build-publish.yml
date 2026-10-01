@@ -62,4 +62,4 @@ jobs:
        - name: Scan Build
          run: |          
           # jf bs --fail=false
-          jf audit --sast
+          jf audit --sast --format=simple-json
