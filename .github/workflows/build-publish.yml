@@ -26,7 +26,8 @@ jobs:
         with:
           ref: ${{ inputs.branch || matrix.branch }}
 
-      - uses: jfrog/frogbot@eb4b14765ca0e7a2944f6c80c2d659ff7e9f9869 # Actionの固定SHA（実行バイナリーはwith.versionで指定）
+#      - uses: jfrog/frogbot@eb4b14765ca0e7a2944f6c80c2d659ff7e9f9869 # Actionの固定SHA（実行バイナリーはwith.versionで指定）
+      - uses: jfrog/frogbot@3.6.0
         with:
           oidc-provider-name: 'github-artifactory'
           oidc-audience: 'jfrog-github'
@@ -41,4 +42,4 @@ jobs:
           JF_GIT_BASE_BRANCH:  ${{ inputs.branch || matrix.branch }}
           JF_PROJECT:          ${{ vars.JF_PROJECT }}
           JF_PROJECT_KEY:      ${{ vars.JF_PROJECT }}
-          JF_WATCHES:          'test_license'
+#          JF_WATCHES:          'test_license'
