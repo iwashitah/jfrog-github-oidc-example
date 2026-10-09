@@ -1,66 +1,42 @@
 name: "JFrog-GitHub NPM Publish OIDC Integration"
-on: push
-
+on: 
+  push
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "スキャン対象ブランチ"
+        required: true
+        default: "main"
+        type: string
 # This is required as per
 # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers#adding-permissions-settings
 permissions:
   id-token: write
 
 jobs:
-  build:
-     runs-on: ubuntu-latest
-     env:
-      OIDC_AUDIENCE: 'jfrog-github'
-      OIDC_PROVIDER: 'github-artifactory'
-      PLATFORM_REPO: 'proj1-npm-virtual'
-      JFROG_CLI_BUILD_NAME: TEST1
-      JFROG_CLI_BUILD_NUMBER: 1
-#      JFROG_CLI_BUILD_PROJECT: 'proj1'
-      JFROG_CLI_LOG_LEVEL: 'DEBUG'
-     defaults:
-      run:
-        working-directory: ./package
-     steps:
-       - name: Checkout
-         uses: actions/checkout@v5
+  scan-repository:
+    runs-on: RUNNER-LABEL
+    strategy:
+      matrix:
+        # 【利用者編集】スキャン対象ブランチ
+        branch: ["main"]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ inputs.branch || matrix.branch }}
 
-#       - name: Setup Node npm
-#         uses: actions/setup-node@v4
-
-       - name: Setup JFrog CLI
-         uses: jfrog/setup-jfrog-cli@v5
-         env:
-           # JF_USER: ${{ secrets.JF_USER }}
-           # JF_PASSWORD: ${{ secrets.JF_ACCESS_TOKEN }}
-           JF_URL: ${{ vars.JF_URL }}
-           JF_PROJECT: ${{ vars.JF_PROJECT }}
-         with:
-           oidc-provider-name: ${{ env.OIDC_PROVIDER }}
-           oidc-audience: ${{ env.OIDC_AUDIENCE }}
-           version: 2.125.0
-
-#       - name: Set CLI Config
-#         run: jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
-
-#       - name: Install Dependencies
-#         run: jf npm install
-
-#       - name: Run tests
-#         run: npm test
-
-#       - name: Publish
-#         run: jf npm publish
-
-#       - name: Publish Build info With JFrog CLI
-#         run: |
-#          # Collect environment variables for the build
-#          jf rt build-collect-env
-#          # Collect VCS details from git and add them to the build
-#          jf rt build-add-git
-#          # Publish build info
-#          jf rt build-publish
-       - name: Scan Build
-         run: |          
-          # jf bs --fail=false
-          # jf audit --sast --format=simple-json
-          jf audit --sast --sca
+      - uses: jfrog/frogbot@eb4b14765ca0e7a2944f6c80c2d659ff7e9f9869 # Actionの固定SHA（実行バイナリーはwith.versionで指定）
+        with:
+          oidc-provider-name: 'github-artifactory'
+          oidc-audience: 'jfrog-github'
+          # 【利用者編集】Frogbotバイナリのバージョンを固定する場合はコメント解除
+          version: '3.8.0'
+        env:
+          JFROG_CLI_LOG_LEVEL: DEBUG
+          CI: "true"
+          JF_URL:              ${{ secrets.JF_URL }}
+          #JF_GIT_TOKEN:        ${{ secrets.GITHUB_TOKEN }}
+          #JF_GIT_API_ENDPOINT: "https://api.ghe.example.com"
+          JF_GIT_BASE_BRANCH:  ${{ inputs.branch || matrix.branch }}
+          JF_PROJECT:          'proj1'
