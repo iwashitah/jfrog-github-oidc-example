@@ -31,7 +31,7 @@ jobs:
           oidc-provider-name: 'github-artifactory'
           oidc-audience: 'jfrog-github'
           # 【利用者編集】Frogbotバイナリのバージョンを固定する場合はコメント解除
-          version: '3.8.0'
+          version: '3.6.0'
         env:
           JFROG_CLI_LOG_LEVEL: DEBUG
           CI: "true"
