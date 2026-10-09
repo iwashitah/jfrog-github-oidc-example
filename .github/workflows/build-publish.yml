@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   scan-repository:
-    runs-on: RUNNER-LABEL
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         # 【利用者編集】スキャン対象ブランチ
