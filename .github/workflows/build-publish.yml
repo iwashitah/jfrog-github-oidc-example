@@ -29,13 +29,14 @@ jobs:
         with:
           ref: ${{ inputs.branch || matrix.branch }}
 
-#      - uses: jfrog/frogbot@eb4b14765ca0e7a2944f6c80c2d659ff7e9f9869 # Actionの固定SHA（実行バイナリーはwith.versionで指定）
-      - uses: jfrog/frogbot@v3.6.0
+      - uses: jfrog/frogbot@eb4b14765ca0e7a2944f6c80c2d659ff7e9f9869 # Actionの固定SHA（実行バイナリーはwith.versionで指定）
+#      - uses: jfrog/frogbot@v3.6.0
         with:
           oidc-provider-name: 'swis-test1008-oidc'
           oidc-audience: 'jfrog-ghec'
           # 【利用者編集】Frogbotバイナリのバージョンを固定する場合はコメント解除
-          version: '3.6.0'
+#          version: '3.6.0'
+          version: '3.8.0'
         env:
           JFROG_CLI_LOG_LEVEL: DEBUG
           CI: "true"
