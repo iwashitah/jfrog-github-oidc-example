@@ -40,7 +40,7 @@ jobs:
           JF_GIT_TOKEN:        ${{ secrets.GITHUB_TOKEN }}
           #JF_GIT_API_ENDPOINT: "https://api.ghe.example.com"
           JF_GIT_BASE_BRANCH:  ${{ inputs.branch || matrix.branch }}
-          JF_PROJECT:          ${{ vars.JF_PROJECT }}
-          JF_PROJECT_KEY:      ${{ vars.JF_PROJECT }}
-          JF_UPLOAD_SBOM_TO_VCS: 'false'
+          JF_PROJECT_KEY:      'swis-test1008'
+#          JF_PROJECT:          ${{ vars.JF_PROJECT }}
+#          JF_PROJECT_KEY:      ${{ vars.JF_PROJECT }}
 #          JF_WATCHES:          'test_license'
