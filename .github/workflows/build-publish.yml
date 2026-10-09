@@ -42,4 +42,5 @@ jobs:
           JF_GIT_BASE_BRANCH:  ${{ inputs.branch || matrix.branch }}
           JF_PROJECT:          ${{ vars.JF_PROJECT }}
           JF_PROJECT_KEY:      ${{ vars.JF_PROJECT }}
+          JF_UPLOAD_SBOM_TO_VCS: 'false'
 #          JF_WATCHES:          'test_license'
