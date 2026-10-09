@@ -36,7 +36,7 @@ jobs:
           JFROG_CLI_LOG_LEVEL: DEBUG
           CI: "true"
           JF_URL:              ${{ vars.JF_URL }}
-          #JF_GIT_TOKEN:        ${{ secrets.GITHUB_TOKEN }}
+          JF_GIT_TOKEN:        ${{ secrets.GITHUB_TOKEN }}
           #JF_GIT_API_ENDPOINT: "https://api.ghe.example.com"
           JF_GIT_BASE_BRANCH:  ${{ inputs.branch || matrix.branch }}
           JF_PROJECT:          'proj1'
