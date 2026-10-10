@@ -45,8 +45,8 @@ jobs:
           #JF_GIT_API_ENDPOINT: "https://api.ghe.example.com"
           JF_GIT_BASE_BRANCH:  ${{ inputs.branch || matrix.branch }}
 #          JF_PROJECT:          'swis-test1008'
-#          JF_PROJECT_KEY:      'swis-test1008'
-          JF_UPLOAD_PR_SECURITY_RESULTS_TO_VCS: 'false'
+          JF_PROJECT_KEY:      'swis-test1008'
+          JF_UPLOAD_PR_SECURITY_RESULTS_TO_VCS: 'true'
 #          JF_PROJECT:          ${{ vars.JF_PROJECT }}
 #          JF_PROJECT_KEY:      ${{ vars.JF_PROJECT }}
 #          JF_WATCHES:          'test_license'
