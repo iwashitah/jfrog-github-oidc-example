@@ -32,6 +32,15 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: ${{ inputs.branch || matrix.branch }}
+      # この1ステップを追加（オプション）
+      - name: Debug OIDC Token (Optional)
+        if: false  # 必要な時だけ true に変更
+        run: |
+          OIDC_TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=jfrog-ghec" | jq -r '.value')
+          echo "::add-mask::$OIDC_TOKEN"
+          echo $OIDC_TOKEN | cut -d. -f2 | base64 -di 2>/dev/null | jq . || true
+
       - uses: jfrog/frogbot@eb4b14765ca0e7a2944f6c80c2d659ff7e9f9869 # Actionの固定SHA（実行バイナリーはwith.versionで指定）
 #      - uses: jfrog/frogbot@v3.6.0
         with:
