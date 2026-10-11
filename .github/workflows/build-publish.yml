@@ -34,7 +34,7 @@ jobs:
           ref: ${{ inputs.branch || matrix.branch }}
       # この1ステップを追加（オプション）
       - name: Debug OIDC Token (Optional)
-        if: false  # 必要な時だけ true に変更
+        if: true  # 必要な時だけ true に変更
         run: |
           OIDC_TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
             "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=jfrog-ghec" | jq -r '.value')
