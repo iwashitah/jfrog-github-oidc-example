@@ -1,28 +1,13 @@
 {
-  "name": "jfrog-npm-example",
-  "version": "1.0.0",
-  "description": "Add a frog emoji to a given string and do some more frog stuff related 🐸",
-  "main": "index.js",
+  "name": "npm-example",
+  "version": "0.0.3",
   "scripts": {
-    "test": "cd tests && jest"
+    "start": "node helloworld"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yonarbel/create-package-example.git"
-  },
-  "keywords": [
-    "JFrog"
-  ],
-  "author": "Hirofumi Iwashita",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yonarbel/create-package-example/issues"
-  },
-  "homepage": "https://github.com/yonarbel/create-package-example#readme",
   "dependencies": {
-    "lodash": "4.17.20"
+    "send": "0.8.4"
   },
   "devDependencies": {
-    "jest": "29.3.1"
+    "debug": "3.0.0"
   }
 }
